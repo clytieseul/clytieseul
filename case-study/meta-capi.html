@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Meta CAPI (Server-Side) Setup | Mario Mendoza Jr.</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy: #1b2a3a;
+      --gold: #c9ad6a;
+      --border: #e5e7eb;
+      --bg: #f8fafc;
+      --text: #374151;
+      --muted: #6b7280;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Montserrat, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    header {
+      background: var(--navy);
+      color: #fff;
+      text-align: center;
+      padding: 28px 20px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    header p {
+      margin-top: 8px;
+      font-size: 13px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 32px auto;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--gold);
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.06);
+    }
+
+    h2 {
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin: 32px 0 12px;
+    }
+
+    h2:first-child {
+      margin-top: 0;
+    }
+
+    p {
+      font-size: 14.5px;
+      margin-bottom: 14px;
+    }
+
+    ul {
+      padding-left: 18px;
+      margin-bottom: 18px;
+    }
+
+    li {
+      font-size: 14.5px;
+      margin-bottom: 8px;
+    }
+
+    .highlight {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--gold);
+      padding: 18px 20px;
+      border-radius: 12px;
+      margin: 24px 0;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .tag {
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      background: #fff;
+    }
+
+    .footer {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .footer a {
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-size: 12px;
+      color: var(--navy);
+      border: 1px solid var(--border);
+      padding: 10px 16px;
+      border-radius: 10px;
+      transition: all .2s ease;
+    }
+
+    .footer a:hover {
+      background: rgba(201,173,106,.15);
+      border-color: var(--gold);
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        margin: 20px;
+        padding: 28px;
+      }
+    }
+	
+	/* ---------- Slider ---------- */
+.slider {
+  position: relative;
+  margin: 18px 0 10px;
+  border-radius: 16px;
+}
+
+.track-wrap {
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: #fff;
+  box-shadow: 0 10px 28px rgba(0,0,0,.08);
+}
+
+.track {
+  display: flex;
+  transition: transform .35s ease;
+  will-change: transform;
+}
+
+.slide {
+  min-width: 100%;
+  padding: 10px;
+  display: grid;
+  place-items: center;
+}
+
+.slide-img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  cursor: zoom-in;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.slide-img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 14px 36px rgba(0,0,0,.18);
+}
+
+/* Nav arrows */
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 1px solid rgba(255,255,255,.25);
+  background: rgba(15, 23, 42, .75);
+  color: #fff;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 22px;
+  line-height: 40px;
+  display: grid;
+  place-items: center;
+  z-index: 2;
+  transition: background .2s ease, transform .2s ease;
+}
+.nav:hover { background: rgba(15, 23, 42, .9); }
+.nav.prev { left: 12px; }
+.nav.next { right: 12px; }
+
+/* Dots */
+.dots {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 12px;
+}
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #cbd5e1;
+  border: none;
+  cursor: pointer;
+}
+.dot.active {
+  background: var(--gold);
+}
+
+/* Caption */
+.caption {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ---------- Lightbox (Click to enlarge) ---------- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease;
+}
+.lightbox.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.lightbox img {
+  max-width: 92%;
+  max-height: 92%;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.4);
+}
+
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Meta CAPI Setup</h1>
+  <p>Server-Side Conversion Tracking</p>
+</header>
+
+<main class="container">
+
+<div class="slider" id="csSlider">
+  <button class="nav prev" type="button" aria-label="Previous" onclick="slideBy(-1)">‹</button>
+
+  <div class="track-wrap">
+    <div class="track" id="sliderTrack">
+      <div class="slide">
+        <img src="../images/meta-capi/events-overview.jpg"
+             alt="Meta Events Manager - Overview"
+             class="slide-img"
+             onclick="openLightbox(this.src)">
+      </div>
+
+      <div class="slide">
+        <img src="../images/meta-capi/purchase-emq.jpg"
+             alt="Purchase event match quality"
+             class="slide-img"
+             onclick="openLightbox(this.src)">
+      </div>
+
+      <div class="slide">
+        <img src="../images/meta-capi/events-list.jpg"
+             alt="Meta events list"
+             class="slide-img"
+             onclick="openLightbox(this.src)">
+      </div>
+
+      <div class="slide">
+        <img src="../images/meta-capi/gtm-tags.jpg"
+             alt="GTM tags for Meta events"
+             class="slide-img"
+             onclick="openLightbox(this.src)">
+      </div>
+    </div>
+  </div>
+
+  <button class="nav next" type="button" aria-label="Next" onclick="slideBy(1)">›</button>
+</div>
+
+<div class="dots" id="sliderDots" aria-label="Slider dots"></div>
+<p class="caption">Hover to preview. Click to enlarge.</p>
+
+  <h2>Overview</h2>
+  <p>
+    A full Meta (Facebook) Conversions API (CAPI) server-side implementation was configured to
+    improve conversion accuracy, reduce browser-based signal loss, and strengthen attribution
+    reliability across paid media campaigns.
+  </p>
+
+  <h2>Challenge</h2>
+  <p>
+    The existing Meta Pixel setup relied heavily on browser-side tracking, resulting in:
+  </p>
+  <ul>
+    <li>Lost events due to ad blockers and browser privacy restrictions</li>
+    <li>Inconsistent purchase and checkout reporting</li>
+    <li>Low to moderate Event Match Quality (EMQ)</li>
+    <li>Potential double-counting risks without proper deduplication</li>
+  </ul>
+
+  <h2>Implementation Scope</h2>
+  <ul>
+    <li>PageView</li>
+    <li>ViewContent</li>
+    <li>AddToCart</li>
+    <li>InitiateCheckout</li>
+    <li>AddPaymentInfo</li>
+    <li>Purchase</li>
+    <li>Lead and Signup events</li>
+  </ul>
+
+  <h2>Actions Taken</h2>
+  <ul>
+    <li>Implemented Meta Conversions API (server-side)</li>
+    <li>Connected CAPI to the existing Pixel and Dataset ID</li>
+    <li>Configured consistent <code>event_id</code> logic for deduplication</li>
+    <li>Enabled Advanced Matching (automatic and manual)</li>
+    <li>Passed hashed customer data (email, phone, name, location)</li>
+    <li>Validated all events using Meta Events Manager diagnostics</li>
+  </ul>
+
+  <div class="highlight">
+    Result: Server-side events now reliably supplement browser events while respecting Meta’s
+    deduplication rules, ensuring accurate conversion reporting.
+  </div>
+
+  <h2>Results & Impact</h2>
+  <ul>
+    <li>+37.5% additional conversions captured via server-side tracking</li>
+    <li>Event Match Quality improved up to <strong>9.1 / 10</strong> for Purchase events</li>
+    <li>Reduced pixel data loss caused by browser restrictions</li>
+    <li>Reliable conversion signals across 99+ active ad sets</li>
+  </ul>
+
+  <h2>Tools Used</h2>
+  <div class="tags">
+    <span class="tag">Meta Pixel</span>
+    <span class="tag">Meta CAPI</span>
+    <span class="tag">Events Manager</span>
+    <span class="tag">Google Tag Manager</span>
+    <span class="tag">Advanced Matching</span>
+  </div>
+
+  <div class="footer">
+    <a href="../portfolio.html">← Back to Portfolio</a>
+    <a href="../index.html">Resume</a>
+  </div>
+
+</main>
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <img id="lightboxImg" src="" alt="Expanded preview">
+</div>
+
+<script>
+  // ----- Slider -----
+  let currentSlide = 0;
+  const track = document.getElementById('sliderTrack');
+  const dotsWrap = document.getElementById('sliderDots');
+  const slides = track ? Array.from(track.children) : [];
+
+  function renderDots() {
+    if (!dotsWrap) return;
+    dotsWrap.innerHTML = '';
+    slides.forEach((_, i) => {
+      const b = document.createElement('button');
+      b.className = 'dot' + (i === currentSlide ? ' active' : '');
+      b.type = 'button';
+      b.setAttribute('aria-label', `Go to slide ${i + 1}`);
+      b.onclick = () => goToSlide(i);
+      dotsWrap.appendChild(b);
+    });
+  }
+
+  function goToSlide(i) {
+    if (!track) return;
+    currentSlide = (i + slides.length) % slides.length;
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    renderDots();
+  }
+
+  function slideBy(step) {
+    goToSlide(currentSlide + step);
+  }
+
+  // Swipe support (mobile)
+  let startX = 0;
+  let isDown = false;
+
+  const wrap = document.querySelector('.track-wrap');
+  if (wrap) {
+    wrap.addEventListener('pointerdown', (e) => {
+      isDown = true;
+      startX = e.clientX;
+    });
+    wrap.addEventListener('pointerup', (e) => {
+      if (!isDown) return;
+      isDown = false;
+      const diff = e.clientX - startX;
+      if (Math.abs(diff) > 40) slideBy(diff < 0 ? 1 : -1);
+    });
+    wrap.addEventListener('pointerleave', () => isDown = false);
+  }
+
+  // Init
+  if (slides.length) {
+    goToSlide(0);
+    renderDots();
+  }
+
+  // ----- Lightbox -----
+  function openLightbox(src) {
+    const lb = document.getElementById('lightbox');
+    const img = document.getElementById('lightboxImg');
+    img.src = src;
+    lb.classList.add('active');
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') slideBy(1);
+    if (e.key === 'ArrowLeft') slideBy(-1);
+  });
+</script>
+
+</body>
+</html>

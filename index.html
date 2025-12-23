@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mario Mendoza Jr.</title>
+  <title>Mario Mendoza Jr. | Resume</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/favicon.ico">
+
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Libre+Baskerville:wght@700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -125,12 +128,63 @@
   margin-top: 12px;
   text-align: center;
 }
+/* ---------- Top Navigation ---------- */
+.top-nav {
+  position: absolute;
+  top: 16px;
+  right: 28px;
+  display: flex;
+  gap: 24px;
+}
+
+.nav-link {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-decoration: none;
+  opacity: 0.9;
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: var(--gold);
+  transition: width 0.25s ease;
+}
+
+.nav-link:hover {
+  opacity: 1;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  .top-nav {
+    position: static;
+    justify-content: center;
+    margin-bottom: 12px;
+  }
+}
 
 
   </style>
 </head>
 <body>
   <header class="header">
+  <nav class="top-nav">
+  <a href="index.html" class="nav-link">Resume</a>
+  <a href="portfolio.html" class="nav-link">Portfolio</a>
+</nav>
     <div class="initials">M | M</div>
     <h1>Mario Mendoza Jr.</h1>
 	<div class="web-tracking-line">
@@ -162,7 +216,7 @@
             <!-- NEW: circular image -->
             <div class="avatar">
               <div class="circle">
-                <img src="profile.jpg" alt="Profile photo of Charlyn A. Pataytay">
+                <img src="images/profile.jpg" alt="Profile photo of Mario Mendoza">
               </div>
             </div>
 

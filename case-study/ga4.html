@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GA4 + GTM Audit & Cleanup | Mario Mendoza Jr.</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy: #1b2a3a;
+      --gold: #c9ad6a;
+      --ink: #1f2937;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --bg: #f8fafc;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+    }
+
+    /* ---------- Header ---------- */
+    .header {
+      background: var(--navy);
+      color: #fff;
+      padding: 28px 24px;
+      text-align: center;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .header p {
+      margin: 10px 0 0;
+      font-size: 13px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ---------- Container ---------- */
+    .container {
+      max-width: 900px;
+      margin: 32px auto;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--gold);
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 12px 32px rgba(0,0,0,.06);
+    }
+
+    h2 {
+      font-size: 15px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin: 32px 0 12px;
+      font-weight: 800;
+    }
+
+    h2:first-child {
+      margin-top: 0;
+    }
+
+    p {
+      font-size: 14.5px;
+      color: #374151;
+      margin: 0 0 14px;
+    }
+
+    ul {
+      margin: 10px 0 18px 18px;
+      padding: 0;
+      font-size: 14.5px;
+      color: #374151;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    .highlight {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--gold);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin: 22px 0;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .tag {
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      border: 1px solid var(--border);
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: var(--muted);
+      background: #fff;
+    }
+
+    /* ---------- Footer ---------- */
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+
+    .footer a {
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--navy);
+      border: 1px solid var(--border);
+      padding: 10px 16px;
+      border-radius: 10px;
+      transition: all .2s ease;
+    }
+
+    .footer a:hover {
+      border-color: var(--gold);
+      background: rgba(201,173,106,.12);
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        padding: 28px;
+        margin: 20px;
+      }
+    }
+	
+	/* ---------- Image Preview ---------- */
+.preview-wrapper {
+  margin: 24px 0;
+  text-align: center;
+}
+
+.preview-image {
+  max-width: 100%;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  cursor: zoom-in;
+  box-shadow: 0 10px 28px rgba(0,0,0,.12);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.preview-image:hover {
+  transform: scale(1.01);
+  box-shadow: 0 14px 36px rgba(0,0,0,.18);
+}
+
+.caption {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ---------- Lightbox ---------- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease;
+}
+
+.lightbox.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox img {
+  max-width: 92%;
+  max-height: 92%;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.4);
+}
+
+  </style>
+  
+</head>
+
+<body>
+
+  <header class="header">
+    <h1>GA4 + GTM Audit & Cleanup</h1>
+    <p>Case Study</p>
+  </header>
+  
+  <main class="container">
+
+<div class="preview-wrapper">
+  <img
+    src="../images/thumb-ga4.jpg"
+    alt="GA4 and GTM Tag Configuration"
+    class="preview-image"
+    onclick="openLightbox(this.src)"
+  />
+  <p class="caption">GA4 ecommerce event structure inside Google Tag Manager</p>
+</div>
+    <h2>Overview</h2>
+    <p>
+      A comprehensive Google Analytics 4 (GA4) and Google Tag Manager (GTM) audit was conducted to
+      identify and resolve tracking inaccuracies caused by duplicate events, misfiring triggers,
+      and inconsistent ecommerce implementation.
+    </p>
+
+    <h2>Challenge</h2>
+    <p>
+      The client’s analytics setup was producing unreliable data due to multiple implementation
+      issues, making it difficult to trust reports and conversion metrics.
+    </p>
+    <ul>
+      <li>Duplicate GA4 ecommerce events firing across multiple pages</li>
+      <li>Events triggering on incorrect page types (e.g., list events on PDPs)</li>
+      <li>Non-standard and inconsistent GA4 ecommerce event naming</li>
+      <li>Overlapping GTM triggers inflating metrics</li>
+      <li>Unclear end-to-end conversion flow visibility</li>
+    </ul>
+
+    <h2>Audit Scope</h2>
+    <p>
+      The audit covered the full ecommerce and engagement funnel, including:
+    </p>
+    <ul>
+      <li><code>view_item_list</code>, <code>select_item</code>, <code>view_item</code></li>
+      <li><code>add_to_cart</code>, <code>view_cart</code>, <code>begin_checkout</code></li>
+      <li><code>add_shipping_info</code>, <code>add_payment_info</code>, <code>purchase</code></li>
+      <li><code>Subscription, login, email, and SMS engagement events</code></li>
+    </ul>
+
+    <h2>Actions Taken</h2>
+    <ul>
+      <li>Identified and eliminated duplicate GA4 event firing</li>
+      <li>Corrected trigger logic based on page type and dataLayer conditions</li>
+      <li>Standardized GA4 ecommerce event naming and parameters</li>
+      <li>Validated required ecommerce parameters (items, price, quantity, currency)</li>
+      <li>Tested the full user journey using GTM Preview Mode and GA4 DebugView</li>
+      <li>Cleaned and reorganized the GTM container for maintainability</li>
+    </ul>
+
+    <div class="highlight">
+      Result: Each GA4 event now fires once per intended user action, with accurate parameters
+      and correct sequencing across the entire funnel.
+    </div>
+
+    <h2>Results & Impact</h2>
+    <ul>
+      <li>Accurate ecommerce funnel tracking restored</li>
+      <li>Eliminated inflated metrics caused by duplicate events</li>
+      <li>Improved confidence in GA4 and marketing reports</li>
+      <li>Reliable conversion data for Google Ads and paid media platforms</li>
+    </ul>
+
+    <h2>Tools Used</h2>
+    <div class="tags">
+      <span class="tag">Google Tag Manager</span>
+      <span class="tag">GA4</span>
+      <span class="tag">GA4 DebugView</span>
+      <span class="tag">GTM Preview</span>
+      <span class="tag">Network Request - Console</span>
+    </div>
+
+    <div class="footer">
+      <a href="../portfolio.html">← Back to Portfolio</a>
+      <a href="../index.html">Resume</a>
+    </div>
+
+  </main>
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img" src="" alt="Expanded preview">
+</div>
+<script>
+  function openLightbox(src) {
+    const lightbox = document.getElementById('lightbox');
+    const img = document.getElementById('lightbox-img');
+    img.src = src;
+    lightbox.classList.add('active');
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeLightbox();
+  });
+</script>
+
+</body>
+</html>

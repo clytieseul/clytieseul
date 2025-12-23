@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mario Mendoza Jr. | Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Libre+Baskerville:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy: #1b2a3a;
+      --ink: #2b2b2b;
+      --muted: #6b7280;
+      --gold: #c9ad6a;
+      --bg: #ffffff;
+      --card: #ffffff;
+      --border: #e5e7eb;
+      --soft: #f8fafc;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); }
+    body { font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; line-height: 1.6; }
+
+    /* ---------- Header ---------- */
+    .header {
+      background: var(--navy);
+      color: #fff;
+      padding: 32px 28px 28px;
+      text-align: center;
+      position: relative;
+    }
+    .header .initials { letter-spacing: 0.35em; font-weight: 700; font-size: 12px; opacity: 0.9; margin-bottom: 8px; }
+    .header h1 { margin: 0; font-weight: 800; font-size: 42px; letter-spacing: 0.08em; }
+    .web-tracking-line {
+      font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #c9a35f;
+      margin-top: 12px;
+      text-align: center;
+    }
+
+    .header .meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 16px;
+      max-width: 920px;
+      margin: 14px auto 0;
+      border-top: 1px solid rgba(255,255,255,.25);
+      padding-top: 14px;
+    }
+    .meta .item { display: flex; align-items: center; gap: 10px; justify-content: center; font-weight: 500; }
+    .meta svg { width: 16px; height: 16px; opacity: 0.9; }
+
+    /* ---------- Top Navigation ---------- */
+    .top-nav {
+      position: absolute;
+      top: 16px;
+      right: 28px;
+      display: flex;
+      gap: 24px;
+    }
+    .nav-link {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #ffffff;
+      text-decoration: none;
+      opacity: 0.9;
+      position: relative;
+    }
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      transition: width 0.25s ease;
+    }
+    .nav-link:hover { opacity: 1; }
+    .nav-link:hover::after { width: 100%; }
+    .nav-link.active { opacity: 1; }
+    .nav-link.active::after { width: 100%; }
+
+    /* ---------- Page ---------- */
+    .page { max-width: 1100px; margin: 0 auto; background: #fff; }
+    .wrap { padding: 28px; }
+
+    .page-title {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin: 6px 0 16px;
+    }
+    .page-title h2 {
+      margin: 0;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--navy);
+      font-size: 16px;
+    }
+    .page-title p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .divider {
+      height: 2px;
+      background: var(--border);
+      margin: 10px 0 22px;
+      position: relative;
+    }
+    .divider:after {
+      content: "";
+      position: absolute;
+      width: 110px;
+      height: 2px;
+      background: var(--gold);
+      left: 0;
+      top: 0;
+    }
+
+    /* ---------- Filters ---------- */
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 0 0 18px;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--gold);
+      border-radius: 999px;
+      background: #fff;
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #111827;
+      cursor: default;
+    }
+
+    /* ---------- Grid ---------- */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .project {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--card);
+      box-shadow: 0 8px 24px rgba(0,0,0,.04);
+      display: flex;
+      flex-direction: column;
+      min-height: 240px;
+    }
+
+    .thumb-ga4 {
+  height: 130px;
+  background-image:
+    linear-gradient(135deg, rgba(0,0,0,.15), rgba(0,0,0,.35)),
+    url("images/thumb-ga4.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+    .thumb-ga4 .badge {
+      position: absolute;
+  top: 12px;
+  left: 12px;
+
+  background: rgba(15, 23, 42, 0.85); /* dark navy */
+  border: 1px solid rgba(201, 173, 106, 0.9);
+  color: #ffffff;
+
+  padding: 6px 12px;
+  border-radius: 999px;
+
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 14px rgba(0,0,0,.35);
+    }
+	
+.thumb-fb {
+  height: 130px;
+  background-image:
+    linear-gradient(135deg, rgba(0,0,0,.15), rgba(0,0,0,.35)),
+    url("images/thumb-fb.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+    .thumb-fb .badge {
+      position: absolute;
+  top: 12px;
+  left: 12px;
+
+  background: rgba(15, 23, 42, 0.85); /* dark navy */
+  border: 1px solid rgba(201, 173, 106, 0.9);
+  color: #ffffff;
+
+  padding: 6px 12px;
+  border-radius: 999px;
+
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 14px rgba(0,0,0,.35);
+    }	
+	
+.thumb {
+  height: 130px;
+  background: radial-gradient(1200px 300px at 30% 0%, rgba(201,173,106,.35), transparent 55%), linear-gradient(135deg, rgba(255,255,255,.06), rgba(0,0,0,.08)), var(--navy);
+  position: relative;
+}
+	.thumb .badge {
+      position: absolute;
+  top: 12px;
+  left: 12px;
+
+  background: rgba(15, 23, 42, 0.85); /* dark navy */
+  border: 1px solid rgba(201, 173, 106, 0.9);
+  color: #ffffff;
+
+  padding: 6px 12px;
+  border-radius: 999px;
+
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 14px rgba(0,0,0,.35);
+    }
+
+
+
+    .project .body {
+      padding: 14px 14px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .project h3 {
+      margin: 0;
+      font-size: 14px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--navy);
+      font-weight: 800;
+      line-height: 1.35;
+    }
+    .project p {
+      margin: 0;
+      color: #374151;
+      font-size: 13px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 2px;
+    }
+    .tag {
+      font-size: 11px;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      background: var(--soft);
+      padding: 4px 8px;
+      border-radius: 999px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      padding-top: 6px;
+      margin-top: auto;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 9px 11px;
+      border-radius: 10px;
+      font-size: 12px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-weight: 700;
+      border: 1px solid var(--border);
+      color: var(--navy);
+      background: #fff;
+      transition: transform .08s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .btn.primary {
+      border-color: rgba(201,173,106,.55);
+      background: linear-gradient(90deg, rgba(201,173,106,.24), rgba(231,212,162,.18));
+    }
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 18px rgba(0,0,0,.06);
+      border-color: rgba(201,173,106,.65);
+    }
+
+    /* ---------- Footer ---------- */
+    .footer-note {
+      margin-top: 22px;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--gold);
+      border-radius: 14px;
+      background: #fff;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 980px) {
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .header .meta { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 700px) {
+      .grid { grid-template-columns: 1fr; }
+      .top-nav { position: static; justify-content: center; margin-bottom: 12px; }
+      .header h1 { font-size: 34px; }
+      .web-tracking-line { font-size: 12px; }
+      .page-title { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media print {
+      a { color: inherit; text-decoration: none; }
+      .btn, .filters { display: none !important; }
+      .project { box-shadow: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <nav class="top-nav">
+      <a href="index.html" class="nav-link">Resume</a>
+      <a href="portfolio.html" class="nav-link active">Portfolio</a>
+    </nav>
+
+    <div class="initials">M | M</div>
+    <h1>Mario Mendoza Jr.</h1>
+    <div class="web-tracking-line">Web Tracking Implementation Specialist | Technical Support</div>
+
+    <div class="meta">
+      <div class="item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+        <span>Davao City, 8000, Philippines</span>
+      </div>
+      <div class="item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.1.37 2.29.57 3.58.57a1 1 0 011 1V21a1 1 0 01-1 1C10.07 22 2 13.93 2 3a1 1 0 011-1h3.5a1 1 0 011 1c0 1.29.2 2.48.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>
+        <span>+63 956 8140 121</span>
+      </div>
+      <div class="item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 2v.01L12 13 4 6.01V6h16zM4 18V8.24l7.4 5.93a1 1 0 001.2 0L20 8.24V18H4z"/></svg>
+        <span>mario.mendoza1228@gmail.com</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="wrap">
+      <div class="page-title">
+        <h2>Portfolio</h2>
+        <p>A selection of tracking implementations, audits, and analytics builds.</p>
+      </div>
+      <div class="divider"></div>
+
+      <!-- Optional “filters” (static chips for design) -->
+      <div class="filters">
+        <div class="chip">GTM / GA4</div>
+        <div class="chip">Meta CAPI</div>
+        <div class="chip">Google Ads</div>
+        <div class="chip">Server-side</div>
+        <div class="chip">Shopify / WordPress</div>
+      </div>
+
+      <!-- PROJECT GRID -->
+      <section class="grid">
+
+        <!-- Project 1 -->
+        <article class="project">
+          <div class="thumb-ga4"><span class="badge">Tracking Audit</span></div>
+          <div class="body">
+            <h3>GA4 + GTM Audit & Cleanup</h3>
+            <p>Diagnosed duplicate events, fixed misfires, standardized ecommerce naming, and validated end-to-end conversion flow.</p>
+            <div class="tags">
+              <span class="tag">GA4</span><span class="tag">GTM</span><span class="tag">Debugging</span>
+            </div>
+            <div class="actions">
+              <a class="btn primary" href="case-study/ga4.html" rel="noreferrer">Case Study</a>
+
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project">
+          <div class="thumb"><span class="badge">Ecommerce</span></div>
+          <div class="body">
+            <h3>Shopify Ecommerce Tracking</h3>
+            <p>Implemented purchase funnel, enhanced ecommerce events, and ensured dataLayer consistency for accurate attribution.</p>
+            <div class="tags">
+              <span class="tag">Shopify</span><span class="tag">Ecommerce</span><span class="tag">DataLayer</span>
+            </div>
+            <div class="actions">
+              <a class="btn primary" href="#" target="_blank" rel="noreferrer">Case Study</a>
+              <a class="btn" href="#" target="_blank" rel="noreferrer">Preview</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="project">
+          <div class="thumb-fb"><span class="badge">Server-side</span></div>
+          <div class="body">
+            <h3>Meta CAPI (Server-Side) Setup</h3>
+            <p>Configured Conversion API, improved event match quality, reduced pixel loss, and validated deduplication rules.</p>
+            <div class="tags">
+              <span class="tag">Meta CAPI</span><span class="tag">S2S</span><span class="tag">Attribution</span>
+            </div>
+            <div class="actions">
+              <a class="btn primary" href="case-study/meta-capi.html" target="_blank" rel="noreferrer">Case Study</a>
+              
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 4 -->
+        <article class="project">
+          <div class="thumb"><span class="badge">Ads</span></div>
+          <div class="body">
+            <h3>Google Ads Conversion Fix</h3>
+            <p>Repaired broken conversion tags, aligned GA4 + Ads conversions, and validated consent-aware firing conditions.</p>
+            <div class="tags">
+              <span class="tag">Google Ads</span><span class="tag">GA4</span><span class="tag">Consent</span>
+            </div>
+            <div class="actions">
+              <a class="btn primary" href="#" target="_blank" rel="noreferrer">Case Study</a>
+              <a class="btn" href="#" target="_blank" rel="noreferrer">Preview</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 5 -->
+        <article class="project">
+          <div class="thumb"><span class="badge">CRO</span></div>
+          <div class="body">
+            <h3>Funnel Reporting Dashboard</h3>
+            <p>Built a clean reporting view for key KPIs (sessions → add to cart → checkout → purchase) for weekly performance reviews.</p>
+            <div class="tags">
+              <span class="tag">Reporting</span><span class="tag">Looker</span><span class="tag">KPIs</span>
+            </div>
+            <div class="actions">
+              <a class="btn primary" href="#" target="_blank" rel="noreferrer">Case Study</a>
+              <a class="btn" href="#" target="_blank" rel="noreferrer">Preview</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 6 -->
+        <article class="project">
+          <div class="thumb"><span class="badge">Support</span></div>
+          <div class="body">
+            <h3>Tracking QA & Incident Resolution</h3>
+            <p>Validated event payloads, fixed duplicate tags, and documented SOPs to prevent recurring implementation issues.</p>
+            <div class="tags">
+              <span class="tag">QA</span><span class="tag">SOPs</span><span class="tag">Troubleshooting</span>
+            </div>
+            <div class="actions">
+              <a class="btn primary" href="#" target="_blank" rel="noreferrer">Case Study</a>
+              <a class="btn" href="#" target="_blank" rel="noreferrer">Preview</a>
+            </div>
+          </div>
+        </article>
+
+      </section>
+
+      
+    </div>
+  </main>
+</body>
+</html>
