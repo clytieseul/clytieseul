@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mario Mendoza Jr.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Libre+Baskerville:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1b2a3a;
+      --ink: #2b2b2b;
+      --muted: #6b7280;
+      --gold: #c9ad6a;
+      --bg: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); }
+    body { font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; line-height: 1.6; }
+
+    /* ---------- Header ---------- */
+    .header {
+      background: var(--navy);
+      color: #fff;
+      padding: 32px 28px 28px;
+      text-align: center;
+      position: relative;
+    }
+    .header .initials { letter-spacing: 0.35em; font-weight: 700; font-size: 12px; opacity: 0.9; margin-bottom: 8px; }
+    .header h1 { margin: 0; font-weight: 800; font-size: 42px; letter-spacing: 0.08em; }
+    .header h2 { margin: 6px 0 18px; font-weight: 600; font-size: 12.5px; letter-spacing: 0.25em; text-transform: uppercase; opacity: .95; }
+
+    .header .meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 16px;
+      max-width: 920px;
+      margin: 0 auto;
+      border-top: 1px solid rgba(255,255,255,.25);
+      padding-top: 14px;
+    }
+    .meta .item { display: flex; align-items: center; gap: 10px; justify-content: center; font-weight: 500; }
+    .meta svg { width: 16px; height: 16px; opacity: 0.9; }
+
+    /* ---------- Page Layout ---------- */
+    .page { max-width: 1000px; margin: 0 auto; background: #fff; }
+    .content { display: grid; grid-template-columns: 300px 1fr; gap: 28px; padding: 28px; }
+
+    /* ---------- Sidebar ---------- */
+    .card { border: 1px solid #e5e7eb; }
+    .card + .card { margin-top: 18px; }
+    .card h3 { margin: 0; background: #f8fafc; padding: 14px 16px; font-size: 13px; font-weight: 800; letter-spacing: .18em; color: var(--navy); text-transform: uppercase; border-bottom: 1px solid #e5e7eb; }
+    .card .inner { padding: 14px 16px; }
+
+    .about p {
+  margin: 0;
+  font-size: 13.5px;
+  color: #374151;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+    /* avatar */
+    .avatar { display:flex; justify-content:center; margin: 6px 0 14px; }
+    .avatar .circle {
+      width: 150px; height: 150px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid var(--gold);
+      box-shadow: 0 6px 18px rgba(0,0,0,.08);
+      background: #fff;
+    }
+    .avatar img {
+      width: 100%; height: 100%;
+      object-fit: cover; display:block;
+    }
+
+    .skill { display: grid; grid-template-columns: 1fr 64px; align-items: center; gap: 10px; margin: 8px 0; font-size: 13px; color: #111827; }
+    .bar { height: 6px; background: #e5e7eb; position: relative; border-radius: 999px; overflow: hidden; }
+    .bar span { position: absolute; inset: 0; width: var(--w, 80%); background: linear-gradient(90deg, var(--gold), #e7d4a2); }
+
+    .pill { display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border:1px solid #e5e7eb; border-left:4px solid var(--gold); border-radius:10px; margin:6px 0; font-size:13px; }
+
+    /* ---------- Main Column ---------- */
+    .section-title { font-weight: 800; letter-spacing: .25em; text-transform: uppercase; color: var(--navy); font-size: 14px; margin: 2px 0 14px; position: relative; }
+    .divider { height: 2px; background: #e5e7eb; margin: 10px 0 22px; position: relative; }
+    .divider:after { content: ""; position: absolute; width: 80px; height: 2px; background: var(--gold); left: 0; top: 0; }
+
+    .job { display: grid; grid-template-columns: 210px 1fr; gap: 18px; padding: 14px 0; border-bottom: 1px solid #f0f0f0; }
+    .job:last-child { border-bottom: none; }
+    .job .where { color: var(--muted); font-size: 13px; }
+    .job .where b { display:block; color:#111827; font-size: 14px; }
+    .job h4 { margin: 0; font-size: 14px; letter-spacing: .1em; text-transform: uppercase; color: var(--navy); }
+    .job ul { margin: 8px 0 0 18px; padding: 0; font-size: 13.5px; }
+
+    /* ---------- Education ---------- */
+    .edu { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .edu .col h5 { margin: 0 0 6px; font-size: 13px; color: #111827; font-weight: 700; }
+    .edu .col p { margin: 0 0 14px; font-size: 13px; color: var(--muted); }
+    .edu .col .degree { font-weight: 700; text-transform: uppercase; color: var(--navy); font-size: 13px; border-top: 1px solid #e5e7eb; padding-top: 8px; }
+
+    /* ---------- Footer / Print ---------- */
+    @media (max-width: 900px) {
+      .content { grid-template-columns: 1fr; }
+      .job { grid-template-columns: 1fr; }
+      .header .meta { grid-template-columns: 1fr; }
+    }
+
+    @page { size: A4; margin: 18mm; }
+    @media print {
+      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .page { max-width: none; }
+      a { color: inherit; text-decoration: none; }
+    }
+	
+	.web-tracking-line {
+  font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #c9a35f; /* gold accent */
+  margin-top: 12px;
+  text-align: center;
+}
+
+
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="initials">M | M</div>
+    <h1>Mario Mendoza Jr.</h1>
+	<div class="web-tracking-line">
+	Web Tracking Implementation Specialist  | Technical Support
+	</div>
+    <div class="meta">
+      <div class="item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+        <span>Davao City, 8000, Philippines</span>
+      </div>
+      <div class="item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.1.37 2.29.57 3.58.57a1 1 0 011 1V21a1 1 0 01-1 1C10.07 22 2 13.93 2 3a1 1 0 011-1h3.5a1 1 0 011 1c0 1.29.2 2.48.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>
+        <span>+63 956 8140 121</span>
+      </div>
+      <div class="item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 2v.01L12 13 4 6.01V6h16zM4 18V8.24l7.4 5.93a1 1 0 001.2 0L20 8.24V18H4z"/></svg>
+        <span>mario.mendoza1228@gmail.com</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="content">
+      <!-- Sidebar -->
+      <aside>
+        <section class="card about">
+          <h3>About Me</h3>
+          <div class="inner">
+            <!-- NEW: circular image -->
+            <div class="avatar">
+              <div class="circle">
+                <img src="profile.jpg" alt="Profile photo of Charlyn A. Pataytay">
+              </div>
+            </div>
+
+            <p>
+              Highly experienced Web Analyst and Technical Virtual Assistant with over 9 years in the BPO and eCommerce support space. Proven track record in resolving complex tracking issues, implementing server-side and client-side tags via Google Tag Manager, and managing multi-channel analytics setups across Meta, Google Ads, and GA4. Adept at managing websites (i.e., Shopify, Wordpress, etc.,), web hosting, and delivering exception client support with strong communication and project management skills.
+            </p>
+          </div>
+        </section>
+
+        <section class="card">
+          <h3>Skills</h3>
+          <div class="inner">
+            <div class="pill">Web Tracking Implementation Specialist (GTM, GA4, GAds, Meta CAPi, etc.,)</div>
+            <div class="pill">Communication & Interpersonal Skills</div>
+            <div class="pill">Technical Support Specialist</div>
+            <div class="pill">Shopify & Wordpress Management</div>
+            <div class="pill">Research</div>
+            <div class="pill">Website Management</div>
+            <div class="pill">cPanel & Web Hosting Management</div>
+            <div class="pill">CRM Tools (Hubspot, Freshdesk, etc.,)</div>
+			<div class="pill">HTML/CSS/PHP/Liquid</div>
+			<div class="pill">Proficient in various Web Applications</div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h3>Language</h3>
+          <div class="inner">
+            <div class="pill">English, Filipino (Tagalog)</div>
+          </div>
+        </section>
+      </aside>
+
+      <!-- Main column -->
+      <section>
+        <h3 class="section-title">Work Experience</h3>
+        <div class="divider"></div>
+
+        <article class="job">
+          <div class="where">
+            <b>Freelancing [Upwork]</b>
+            Aug 2021 - Dec 2025<br>Remote
+          </div>
+          <div>
+            <h4>Web Tracking Implementation Specialist (Technical Support)</h4>
+            <ul>
+              <li>Delivered comprehensive technical support, spanning from first to third level, for tagging-related queries</li>
+              <li>Expertly implemented and troubleshooted web tracking configurations using Google Tag Manager (GTM).</li>
+              <li>Assisted clients in successfully meeting their web tracking objectives.</li>
+              <li>Skillfully managed a portfolio of marketing channels, such as Meta, Google Ads, and Google Analytics 4 (GA4).</li>
+			  <li>Developed insightful reports, efficiently managed tags, executed precise tracking implementations, and swiftly resolved tracking discrepancies.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="job">
+          <div class="where">
+            <b>Green Media Design and Hosting</b>
+            Apr 2015 - Jun 2022<br> Remote - New York
+          </div>
+          <div>
+            <h4>Web Technical Assistant (Support)</h4>
+            <ul>
+              <li>Expertly managed a portfolio of Wordpress websites, ensuring high performance and reliability.</li>
+              <li>Efficiently diagnosed and resolved technical issues to maintain optimal website functionality.</li>
+			  <li>Proactively updated website content and features to enhance user engagement and experience.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="job">
+          <div class="where">
+            <b>Really Successful LTD.</b>
+            May 2013 - Dec 2016<br> Remote - British Isles
+          </div>
+          <div>
+            <h4>Technical Support Manager</h4>
+            <ul>
+              <li>Delivered exceptional customer support for web-based software solutions, enhancing user satisfaction.</li>
+			  <li>Served as the lead troubleshooter, efficiently resolving technical software issues.</li>
+			  <li>Oversaw the ticketing system, guaranteeing prompt response and issue resolution for optimal service delivery.</li>
+
+            </ul>
+          </div>
+        </article>
+		
+		<article class="job">
+          <div class="where">
+            <b>123 Employee/Freelancing</b>
+            Jan 2011 - Jun 2013<br>Office-Based (Davao City)/Remote
+          </div>
+          <div>
+            <h4>Technical/Virtual Assistant/Project Manager</h4>
+            <ul>
+              <li>Managed technical team to achieve project benchmarks and deadlines autonomously.</li>
+              <li>Communicated with clients regularly to gather requirements, provide updates, and ensure satisfaction with deliverables.</li>
+              <li>Managed project timelines and task delegation.</li>
+              <li>Created SOPs and training materials to standardize processes and onboard new team members efficiently.</li>
+              <li>Ensured client-side satisfaction through regular meetings.</li>
+			  <li>Conducted quality assurance checks on deliverables, ensuring all outputs met the client's expectations and branding guidelines.</li>
+            </ul>
+          </div>
+        </article>
+
+        <h3 class="section-title" style="margin-top:18px">Education</h3>
+        <div class="divider"></div>
+
+        <div class="edu">
+          <div class="col">
+            <h5>Ateneo de Davao University</h5>
+            <p>2020 · Davao City, PH</p>
+            <h5>Global Systems Institute of Technology Inc., Philippines</h5>
+            <p>2011 · Bansalan, PH</p>
+          </div>
+          <div class="col">
+            <div class="degree">Bachelor of Arts in Psychology</div>
+            <div class="degree" style="margin-top:12px">Technical–Vocational Certification</div>
+			<p>Technical Education and Skill Development Authority, 3-Year Program</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
