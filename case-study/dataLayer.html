@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shopify Ecommerce Tracking | Mario Mendoza Jr.</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="/favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MB3FGMBR');</script>
+<!-- End Google Tag Manager -->
+  <style>
+    :root{
+      --navy:#1b2a3a;
+      --gold:#c9ad6a;
+      --bg:#f8fafc;
+      --border:#e5e7eb;
+      --text:#374151;
+      --muted:#6b7280;
+      --codebg:#0b1220;
+      --codeborder: rgba(255,255,255,.10);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Montserrat, Arial, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.7;
+    }
+
+    header{
+      background:var(--navy);
+      color:#fff;
+      padding:28px 20px;
+      text-align:center;
+    }
+    header h1{
+      margin:0;
+      font-size:26px;
+      font-weight:800;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+    }
+    header p{
+      margin:8px 0 0;
+      font-size:13px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--gold);
+    }
+
+    .container{
+      max-width:980px;
+      margin:32px auto;
+      background:#fff;
+      border:1px solid var(--border);
+      border-left:4px solid var(--gold);
+      border-radius:16px;
+      padding:40px;
+      box-shadow:0 10px 30px rgba(0,0,0,.06);
+    }
+
+    h2{
+      font-size:15px;
+      font-weight:800;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:var(--navy);
+      margin:32px 0 12px;
+    }
+    h2:first-child{margin-top:0}
+
+    p{font-size:14.5px; margin:0 0 14px}
+    ul{padding-left:18px; margin:0 0 18px}
+    li{font-size:14.5px; margin:0 0 8px}
+
+    .highlight{
+      background:#f8fafc;
+      border:1px solid var(--border);
+      border-left:4px solid var(--gold);
+      padding:18px 20px;
+      border-radius:12px;
+      margin:22px 0;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:10px;
+    }
+    .tag{
+      font-size:11px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      color:var(--muted);
+      background:#fff;
+    }
+
+    /* Code block */
+    .code-card{
+      margin:18px 0 10px;
+      border-radius:14px;
+      overflow:hidden;
+      border:1px solid var(--border);
+      box-shadow:0 10px 28px rgba(0,0,0,.08);
+    }
+    .code-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 14px;
+      background:linear-gradient(180deg, rgba(27,42,58,.98), rgba(27,42,58,.92));
+      border-bottom:1px solid rgba(255,255,255,.08);
+      color:#fff;
+    }
+    .code-title{
+      font-size:12px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--gold);
+      font-weight:800;
+    }
+    .copy-btn{
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.10);
+      color:#fff;
+      border-radius:10px;
+      padding:8px 10px;
+      cursor:pointer;
+      font-weight:700;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-size:11px;
+      transition:all .2s ease;
+    }
+    .copy-btn:hover{
+      background:rgba(255,255,255,.16);
+      border-color:rgba(201,173,106,.7);
+    }
+    pre{
+      margin:0;
+      padding:16px;
+      background:var(--codebg);
+      color:#e5e7eb;
+      overflow:auto;
+      font-size:12.5px;
+      line-height:1.55;
+    }
+    code{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
+
+    /* Slider + Lightbox */
+    .slider{position:relative; margin:18px 0 10px; border-radius:16px;}
+    .track-wrap{
+      overflow:hidden;
+      border-radius:16px;
+      border:1px solid var(--border);
+      background:#fff;
+      box-shadow:0 10px 28px rgba(0,0,0,.08);
+    }
+    .track{display:flex; transition:transform .35s ease; will-change:transform;}
+    .slide{min-width:100%; padding:10px; display:grid; place-items:center;}
+    .slide-img{
+      width:100%;
+      height:auto;
+      border-radius:12px;
+      cursor:zoom-in;
+      transition:transform .25s ease, box-shadow .25s ease;
+    }
+    .slide-img:hover{transform:scale(1.02); box-shadow:0 14px 36px rgba(0,0,0,.18);}
+
+    .nav{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      border:1px solid rgba(255,255,255,.25);
+      background:rgba(15,23,42,.75);
+      color:#fff;
+      width:42px;
+      height:42px;
+      border-radius:999px;
+      cursor:pointer;
+      font-size:22px;
+      line-height:40px;
+      display:grid;
+      place-items:center;
+      z-index:2;
+      transition:background .2s ease;
+    }
+    .nav:hover{background:rgba(15,23,42,.9);}
+    .nav.prev{left:12px;}
+    .nav.next{right:12px;}
+
+    .dots{display:flex; gap:8px; justify-content:center; margin-top:12px;}
+    .dot{
+      width:8px; height:8px; border-radius:999px;
+      background:#cbd5e1; border:none; cursor:pointer;
+    }
+    .dot.active{background:var(--gold);}
+
+    .caption{
+      margin-top:10px;
+      font-size:12px;
+      color:var(--muted);
+      text-align:center;
+    }
+
+    .lightbox{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.85);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:9999;
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .25s ease;
+    }
+    .lightbox.active{opacity:1; pointer-events:auto;}
+    .lightbox img{
+      max-width:92%;
+      max-height:92%;
+      border-radius:16px;
+      box-shadow:0 20px 60px rgba(0,0,0,.4);
+    }
+
+    .footer{
+      margin-top:40px;
+      padding-top:20px;
+      border-top:1px solid var(--border);
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+    .footer a{
+      text-decoration:none;
+      font-weight:700;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      font-size:12px;
+      color:var(--navy);
+      border:1px solid var(--border);
+      padding:10px 16px;
+      border-radius:10px;
+      transition:all .2s ease;
+    }
+    .footer a:hover{
+      background:rgba(201,173,106,.15);
+      border-color:var(--gold);
+    }
+
+    @media (max-width:720px){
+      .container{margin:20px; padding:28px;}
+    }
+  </style>
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MB3FGMBR"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+  <header>
+    <h1>Shopify Ecommerce Tracking</h1>
+    <p>Enhanced ecommerce events • dataLayer consistency • attribution-ready</p>
+  </header>
+
+  <main class="container">
+
+    <h2>Overview</h2>
+    <p>
+      A Shopify ecommerce tracking implementation was delivered to accurately capture the purchase funnel,
+      standardize dataLayer payloads, and improve attribution reliability across analytics and advertising platforms.
+      The work focused on consistent event structure, complete product/variant parameters, and real-world validation
+      using live product interactions.
+    </p>
+
+    <h2>Challenge</h2>
+    <p>
+      The store needed a reliable ecommerce measurement foundation. Key issues included inconsistent event payloads,
+      missing ecommerce parameters, and limited confidence in product-level attribution—especially for variants and
+      checkout steps.
+    </p>
+    <ul>
+      <li>Inconsistent or incomplete ecommerce event firing across PDP and checkout steps</li>
+      <li>Non-standard payload structure, making tags harder to map and maintain</li>
+      <li>Risk of inaccurate revenue, item, and variant attribution</li>
+      <li>Harder debugging due to unclear dataLayer formatting</hli>
+    </ul>
+
+    <h2>Implementation Scope</h2>
+    <ul>
+      <li>Product detail view (PDP)</li>
+      <li>Variant selection tracking (ensuring item_variant consistency)</li>
+      <li>Add to cart and cart interactions</li>
+      <li>Checkout progression (begin checkout, shipping, payment)</li>
+      <li>Purchase / order confirmation</li>
+    </ul>
+
+    <h2>Approach</h2>
+    <ul>
+      <li>Standardized ecommerce naming and payload structure across events</li>
+      <li>Validated dataLayer pushes using browser Developer Tools and real user actions</li>
+      <li>Ensured product arrays included consistent identifiers (item_id / SKU, variant, price, quantity)</li>
+      <li>Kept payloads GTM-friendly and readable for long-term maintainability</li>
+    </ul>
+
+    <div class="highlight">
+      Key outcome: Ecommerce events now share a consistent structure, making it easier to map to GA4 and ad platforms,
+      and reducing attribution gaps caused by missing or malformed product data.
+    </div>
+
+    <h2>Screenshots</h2>
+    <div class="slider" id="csSlider">
+      <button class="nav prev" type="button" aria-label="Previous" onclick="slideBy(-1)">‹</button>
+
+      <div class="track-wrap" id="sliderWrap">
+        <div class="track" id="sliderTrack">
+          <!-- Update these image paths to your actual files -->
+          <div class="slide">
+            <img src="../images/shopify/datalayer-console.jpg"
+                 alt="Console view of dataLayer payload on Shopify PDP"
+                 class="slide-img"
+                 onclick="openLightbox(this.src)">
+          </div>
+
+
+
+          <div class="slide">
+            <img src="../images/shopify/ecommerce-payload.jpg"
+                 alt="Ecommerce object consistency example"
+                 class="slide-img"
+                 onclick="openLightbox(this.src)">
+          </div>
+        </div>
+      </div>
+
+      <button class="nav next" type="button" aria-label="Next" onclick="slideBy(1)">›</button>
+    </div>
+
+    <div class="dots" id="sliderDots" aria-label="Slider dots"></div>
+    <p class="caption">Hover to preview. Click to enlarge.</p>
+
+    <h2>Sample Checkout Funnel dataLayer payloads</h2>
+    <p>
+      Below is an example using <code>window.dataLayer</code>. This structure mirrors a unique-style
+      implementation while keeping event naming consistent and payloads easy to debug.
+    </p>
+
+    <div class="code-card">
+      <div class="code-head">
+        <div class="code-title">GTM-Compatible Sample Payloads</div>
+        <button class="copy-btn" type="button" onclick="copyCode()">Copy</button>
+      </div>
+      <pre><code id="codeBlock">window.dataLayer = window.dataLayer || [];
+
+let products = [];
+let userProperties = {};
+
+/** Base User Data Layer
+ * Fire before all other events and on virtual page changes
+ */
+window.dataLayer.push({
+  event: "dl_user_data",
+  cart_total: "100.00",
+  user_properties: userProperties,
+  ecommerce: {
+    currencyCode: "USD",
+    cart_contents: {
+      products: products
+    }
+  }
+});
+
+/** Begin Checkout */
+window.dataLayer.push({
+  event: "dl_begin_checkout",
+  user_properties: userProperties,
+  marketing: {
+    landing_site: "/store/product-a?utm_source=web&utm_campaign=spring"
+  },
+  ecommerce: {
+    currencyCode: "USD",
+    checkout: {
+      actionField: { step: "1" },
+      products: products
+    }
+  }
+});
+
+/** Add Shipping Info */
+window.dataLayer.push({
+  event: "dl_add_shipping_info",
+  marketing: {
+    landing_site: "/store/product-a?utm_source=web&utm_campaign=spring"
+  },
+  user_properties: userProperties,
+  ecommerce: {
+    currencyCode: "USD",
+    checkout: {
+      actionField: { step: "2" },
+      products: products
+    }
+  }
+});
+
+/** Add Payment Info */
+window.dataLayer.push({
+  event: "dl_add_payment_info",
+  marketing: {
+    landing_site: "/store/product-a?utm_source=web&utm_campaign=spring"
+  },
+  user_properties: userProperties,
+  ecommerce: {
+    currencyCode: "USD",
+    checkout: {
+      actionField: { step: "3" },
+      products: products
+    }
+  }
+});
+
+/** Purchase */
+window.dataLayer.push({
+  event: "dl_purchase",
+  marketing: {
+    landing_site: "/store/product-a?utm_source=web&utm_campaign=spring"
+  },
+  user_properties: userProperties,
+  ecommerce: {
+    currencyCode: "USD",
+    purchase: {
+      actionField: {
+        id: "4835925655784",
+        order_name: "#1005",
+        revenue: "185.3",
+        tax: "15.3",
+        shipping: "0.0",
+        affiliation: "staging-fully-managed-ga4-all-events",
+        sub_total: "170.0",
+        product_sub_total: "170.0",
+        discount_amount: "0.0",
+        sales_channel: "pos",
+        physical_location_id: "00000000000"
+      },
+      products: products
+    }
+  }
+});</code></pre>
+    </div>
+
+    <div class="highlight">
+      Tip: When mapping these events to GA4, translate <code>dl_begin_checkout</code> → <code>begin_checkout</code>,
+      <code>dl_add_shipping_info</code> → <code>add_shipping_info</code>, <code>dl_add_payment_info</code> →
+      <code>add_payment_info</code>, and <code>dl_purchase</code> → <code>purchase</code>.
+    </div>
+
+    <h2>Results & Impact</h2>
+    <ul>
+      <li>Standardized ecommerce payloads for dependable reporting and attribution</li>
+      <li>Improved product and variant consistency across PDP and checkout events</li>
+      <li>Simplified GTM/GA4 mapping with predictable event and ecommerce structures</li>
+      <li>Reduced debugging time with readable, console-verifiable dataLayer pushes</li>
+    </ul>
+
+    <h2>Tools Used</h2>
+    <div class="tags">
+      <span class="tag">Shopify</span>
+      <span class="tag">Google Tag Manager</span>
+      <span class="tag">GA4 Ecommerce</span>
+      <span class="tag">JavaScript</span>
+      <span class="tag">dataLayer</span>
+      <span class="tag">DevTools</span>
+    </div>
+
+    <div class="footer">
+      <a href="../portfolio.html">← Back to Portfolio</a>
+      <a href="../index.html">Resume</a>
+    </div>
+  </main>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <img id="lightboxImg" src="" alt="Expanded preview">
+  </div>
+
+  <script>
+    // ----- Slider -----
+    let currentSlide = 0;
+    const track = document.getElementById('sliderTrack');
+    const dotsWrap = document.getElementById('sliderDots');
+    const slides = track ? Array.from(track.children) : [];
+
+    function renderDots() {
+      if (!dotsWrap) return;
+      dotsWrap.innerHTML = '';
+      slides.forEach((_, i) => {
+        const b = document.createElement('button');
+        b.className = 'dot' + (i === currentSlide ? ' active' : '');
+        b.type = 'button';
+        b.setAttribute('aria-label', `Go to slide ${i + 1}`);
+        b.onclick = () => goToSlide(i);
+        dotsWrap.appendChild(b);
+      });
+    }
+
+    function goToSlide(i) {
+      if (!track || slides.length === 0) return;
+      currentSlide = (i + slides.length) % slides.length;
+      track.style.transform = `translateX(-${currentSlide * 100}%)`;
+      renderDots();
+    }
+
+    function slideBy(step) {
+      goToSlide(currentSlide + step);
+    }
+
+    // Swipe support
+    let startX = 0;
+    let isDown = false;
+    const wrap = document.getElementById('sliderWrap');
+
+    if (wrap) {
+      wrap.addEventListener('pointerdown', (e) => {
+        isDown = true;
+        startX = e.clientX;
+      });
+      wrap.addEventListener('pointerup', (e) => {
+        if (!isDown) return;
+        isDown = false;
+        const diff = e.clientX - startX;
+        if (Math.abs(diff) > 40) slideBy(diff < 0 ? 1 : -1);
+      });
+      wrap.addEventListener('pointerleave', () => isDown = false);
+    }
+
+    if (slides.length) {
+      goToSlide(0);
+      renderDots();
+    }
+
+    // ----- Lightbox -----
+    function openLightbox(src) {
+      const lb = document.getElementById('lightbox');
+      const img = document.getElementById('lightboxImg');
+      img.src = src;
+      lb.classList.add('active');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') slideBy(1);
+      if (e.key === 'ArrowLeft') slideBy(-1);
+    });
+
+    // ----- Copy Code -----
+    function copyCode() {
+      const code = document.getElementById('codeBlock').innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        const old = btn.textContent;
+        btn.textContent = 'Copied';
+        setTimeout(() => btn.textContent = old, 1200);
+      });
+    }
+  </script>
+</body>
+</html>

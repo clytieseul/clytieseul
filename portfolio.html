@@ -9,7 +9,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="icon" href="/favicon.ico">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Libre+Baskerville:wght@700&display=swap" rel="stylesheet">
-
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MB3FGMBR');</script>
+<!-- End Google Tag Manager -->
   <style>
     :root {
       --navy: #1b2a3a;
@@ -238,12 +244,50 @@
   box-shadow: 0 4px 14px rgba(0,0,0,.35);
     }	
 	
-.thumb {
+.thumb-dl {
   height: 130px;
-  background: radial-gradient(1200px 300px at 30% 0%, rgba(201,173,106,.35), transparent 55%), linear-gradient(135deg, rgba(255,255,255,.06), rgba(0,0,0,.08)), var(--navy);
+  background-image:
+    linear-gradient(135deg, rgba(0,0,0,.15), rgba(0,0,0,.35)),
+    url("images/thumb-dl.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   position: relative;
 }
-	.thumb .badge {
+
+    .thumb-dl .badge {
+      position: absolute;
+  top: 12px;
+  left: 12px;
+
+  background: rgba(15, 23, 42, 0.85); /* dark navy */
+  border: 1px solid rgba(201, 173, 106, 0.9);
+  color: #ffffff;
+
+  padding: 6px 12px;
+  border-radius: 999px;
+
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 14px rgba(0,0,0,.35);
+    }		
+
+.thumb-reporting {
+  height: 130px;
+  background-image:
+    linear-gradient(135deg, rgba(0,0,0,.15), rgba(0,0,0,.35)),
+    url("images/thumb-reporting.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+    .thumb-reporting .badge {
       position: absolute;
   top: 12px;
   left: 12px;
@@ -265,6 +309,70 @@
     }
 
 
+.thumb-qa {
+  height: 130px;
+  background-image:
+    linear-gradient(135deg, rgba(0,0,0,.15), rgba(0,0,0,.35)),
+    url("images/thumb-qa.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+    .thumb-qa .badge {
+      position: absolute;
+  top: 12px;
+  left: 12px;
+
+  background: rgba(15, 23, 42, 0.85); /* dark navy */
+  border: 1px solid rgba(201, 173, 106, 0.9);
+  color: #ffffff;
+
+  padding: 6px 12px;
+  border-radius: 999px;
+
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 14px rgba(0,0,0,.35);
+    }		
+
+
+.thumb-gads {
+  height: 130px;
+  background-image:
+    linear-gradient(135deg, rgba(0,0,0,.15), rgba(0,0,0,.35)),
+    url("images/thumb-gads.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+    .thumb-gads .badge {
+      position: absolute;
+  top: 12px;
+  left: 12px;
+
+  background: rgba(15, 23, 42, 0.85); /* dark navy */
+  border: 1px solid rgba(201, 173, 106, 0.9);
+  color: #ffffff;
+
+  padding: 6px 12px;
+  border-radius: 999px;
+
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 14px rgba(0,0,0,.35);
+    }		
 
     .project .body {
       padding: 14px 14px 12px;
@@ -373,6 +481,10 @@
 </head>
 
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MB3FGMBR"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
   <header class="header">
     <nav class="top-nav">
       <a href="index.html" class="nav-link">Resume</a>
@@ -437,7 +549,7 @@
 
         <!-- Project 2 -->
         <article class="project">
-          <div class="thumb"><span class="badge">Ecommerce</span></div>
+          <div class="thumb-dl"><span class="badge">Ecommerce</span></div>
           <div class="body">
             <h3>Shopify Ecommerce Tracking</h3>
             <p>Implemented purchase funnel, enhanced ecommerce events, and ensured dataLayer consistency for accurate attribution.</p>
@@ -445,8 +557,8 @@
               <span class="tag">Shopify</span><span class="tag">Ecommerce</span><span class="tag">DataLayer</span>
             </div>
             <div class="actions">
-              <a class="btn primary" href="#" target="_blank" rel="noreferrer">Case Study</a>
-              <a class="btn" href="#" target="_blank" rel="noreferrer">Preview</a>
+              <a class="btn primary" href="case-study/dataLayer.html" rel="noreferrer">Case Study</a>
+             
             </div>
           </div>
         </article>
@@ -461,7 +573,7 @@
               <span class="tag">Meta CAPI</span><span class="tag">S2S</span><span class="tag">Attribution</span>
             </div>
             <div class="actions">
-              <a class="btn primary" href="case-study/meta-capi.html" target="_blank" rel="noreferrer">Case Study</a>
+              <a class="btn primary" href="case-study/meta-capi.html" rel="noreferrer">Case Study</a>
               
             </div>
           </div>
@@ -469,7 +581,7 @@
 
         <!-- Project 4 -->
         <article class="project">
-          <div class="thumb"><span class="badge">Ads</span></div>
+          <div class="thumb-gads"><span class="badge">Ads</span></div>
           <div class="body">
             <h3>Google Ads Conversion Fix</h3>
             <p>Repaired broken conversion tags, aligned GA4 + Ads conversions, and validated consent-aware firing conditions.</p>
@@ -477,15 +589,15 @@
               <span class="tag">Google Ads</span><span class="tag">GA4</span><span class="tag">Consent</span>
             </div>
             <div class="actions">
-              <a class="btn primary" href="#" target="_blank" rel="noreferrer">Case Study</a>
-              <a class="btn" href="#" target="_blank" rel="noreferrer">Preview</a>
+              
+              
             </div>
           </div>
         </article>
 
         <!-- Project 5 -->
         <article class="project">
-          <div class="thumb"><span class="badge">CRO</span></div>
+          <div class="thumb-reporting"><span class="badge">Reporting</span></div>
           <div class="body">
             <h3>Funnel Reporting Dashboard</h3>
             <p>Built a clean reporting view for key KPIs (sessions → add to cart → checkout → purchase) for weekly performance reviews.</p>
@@ -493,15 +605,15 @@
               <span class="tag">Reporting</span><span class="tag">Looker</span><span class="tag">KPIs</span>
             </div>
             <div class="actions">
-              <a class="btn primary" href="#" target="_blank" rel="noreferrer">Case Study</a>
-              <a class="btn" href="#" target="_blank" rel="noreferrer">Preview</a>
+              
+              
             </div>
           </div>
         </article>
 
         <!-- Project 6 -->
         <article class="project">
-          <div class="thumb"><span class="badge">Support</span></div>
+          <div class="thumb-qa"><span class="badge">Support</span></div>
           <div class="body">
             <h3>Tracking QA & Incident Resolution</h3>
             <p>Validated event payloads, fixed duplicate tags, and documented SOPs to prevent recurring implementation issues.</p>
@@ -509,8 +621,8 @@
               <span class="tag">QA</span><span class="tag">SOPs</span><span class="tag">Troubleshooting</span>
             </div>
             <div class="actions">
-              <a class="btn primary" href="#" target="_blank" rel="noreferrer">Case Study</a>
-              <a class="btn" href="#" target="_blank" rel="noreferrer">Preview</a>
+              
+             
             </div>
           </div>
         </article>
