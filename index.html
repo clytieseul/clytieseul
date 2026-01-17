@@ -17,174 +17,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MB3FGMBR');</script>
 <!-- End Google Tag Manager -->
-  <style>
-    :root {
-      --navy: #1b2a3a;
-      --ink: #2b2b2b;
-      --muted: #6b7280;
-      --gold: #c9ad6a;
-      --bg: #ffffff;
-    }
-
-    * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); }
-    body { font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; line-height: 1.6; }
-
-    /* ---------- Header ---------- */
-    .header {
-      background: var(--navy);
-      color: #fff;
-      padding: 32px 28px 28px;
-      text-align: center;
-      position: relative;
-    }
-    .header .initials { letter-spacing: 0.35em; font-weight: 700; font-size: 12px; opacity: 0.9; margin-bottom: 8px; }
-    .header h1 { margin: 0; font-weight: 800; font-size: 42px; letter-spacing: 0.08em; }
-    .header h2 { margin: 6px 0 18px; font-weight: 600; font-size: 12.5px; letter-spacing: 0.25em; text-transform: uppercase; opacity: .95; }
-
-    .header .meta {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap: 16px;
-      max-width: 920px;
-      margin: 0 auto;
-      border-top: 1px solid rgba(255,255,255,.25);
-      padding-top: 14px;
-    }
-    .meta .item { display: flex; align-items: center; gap: 10px; justify-content: center; font-weight: 500; }
-    .meta svg { width: 16px; height: 16px; opacity: 0.9; }
-
-    /* ---------- Page Layout ---------- */
-    .page { max-width: 1000px; margin: 0 auto; background: #fff; }
-    .content { display: grid; grid-template-columns: 300px 1fr; gap: 28px; padding: 28px; }
-
-    /* ---------- Sidebar ---------- */
-    .card { border: 1px solid #e5e7eb; }
-    .card + .card { margin-top: 18px; }
-    .card h3 { margin: 0; background: #f8fafc; padding: 14px 16px; font-size: 13px; font-weight: 800; letter-spacing: .18em; color: var(--navy); text-transform: uppercase; border-bottom: 1px solid #e5e7eb; }
-    .card .inner { padding: 14px 16px; }
-
-    .about p {
-  margin: 0;
-  font-size: 13.5px;
-  color: #374151;
-  text-align: justify;
-  text-justify: inter-word;
-}
-
-    /* avatar */
-    .avatar { display:flex; justify-content:center; margin: 6px 0 14px; }
-    .avatar .circle {
-      width: 150px; height: 150px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 4px solid var(--gold);
-      box-shadow: 0 6px 18px rgba(0,0,0,.08);
-      background: #fff;
-    }
-    .avatar img {
-      width: 100%; height: 100%;
-      object-fit: cover; display:block;
-    }
-
-    .skill { display: grid; grid-template-columns: 1fr 64px; align-items: center; gap: 10px; margin: 8px 0; font-size: 13px; color: #111827; }
-    .bar { height: 6px; background: #e5e7eb; position: relative; border-radius: 999px; overflow: hidden; }
-    .bar span { position: absolute; inset: 0; width: var(--w, 80%); background: linear-gradient(90deg, var(--gold), #e7d4a2); }
-
-    .pill { display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border:1px solid #e5e7eb; border-left:4px solid var(--gold); border-radius:10px; margin:6px 0; font-size:13px; }
-
-    /* ---------- Main Column ---------- */
-    .section-title { font-weight: 800; letter-spacing: .25em; text-transform: uppercase; color: var(--navy); font-size: 14px; margin: 2px 0 14px; position: relative; }
-    .divider { height: 2px; background: #e5e7eb; margin: 10px 0 22px; position: relative; }
-    .divider:after { content: ""; position: absolute; width: 80px; height: 2px; background: var(--gold); left: 0; top: 0; }
-
-    .job { display: grid; grid-template-columns: 210px 1fr; gap: 18px; padding: 14px 0; border-bottom: 1px solid #f0f0f0; }
-    .job:last-child { border-bottom: none; }
-    .job .where { color: var(--muted); font-size: 13px; }
-    .job .where b { display:block; color:#111827; font-size: 14px; }
-    .job h4 { margin: 0; font-size: 14px; letter-spacing: .1em; text-transform: uppercase; color: var(--navy); }
-    .job ul { margin: 8px 0 0 18px; padding: 0; font-size: 13.5px; }
-
-    /* ---------- Education ---------- */
-    .edu { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .edu .col h5 { margin: 0 0 6px; font-size: 13px; color: #111827; font-weight: 700; }
-    .edu .col p { margin: 0 0 14px; font-size: 13px; color: var(--muted); }
-    .edu .col .degree { font-weight: 700; text-transform: uppercase; color: var(--navy); font-size: 13px; border-top: 1px solid #e5e7eb; padding-top: 8px; }
-
-    /* ---------- Footer / Print ---------- */
-    @media (max-width: 900px) {
-      .content { grid-template-columns: 1fr; }
-      .job { grid-template-columns: 1fr; }
-      .header .meta { grid-template-columns: 1fr; }
-    }
-
-    @page { size: A4; margin: 18mm; }
-    @media print {
-      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-      .page { max-width: none; }
-      a { color: inherit; text-decoration: none; }
-    }
-	
-	.web-tracking-line {
-  font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #c9a35f; /* gold accent */
-  margin-top: 12px;
-  text-align: center;
-}
-/* ---------- Top Navigation ---------- */
-.top-nav {
-  position: absolute;
-  top: 16px;
-  right: 28px;
-  display: flex;
-  gap: 24px;
-}
-
-.nav-link {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #ffffff;
-  text-decoration: none;
-  opacity: 0.9;
-  position: relative;
-}
-
-.nav-link::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -6px;
-  width: 0;
-  height: 2px;
-  background: var(--gold);
-  transition: width 0.25s ease;
-}
-
-.nav-link:hover {
-  opacity: 1;
-}
-
-.nav-link:hover::after {
-  width: 100%;
-}
-
-/* Mobile */
-@media (max-width: 700px) {
-  .top-nav {
-    position: static;
-    justify-content: center;
-    margin-bottom: 12px;
-  }
-}
-
-
-  </style>
+  
+  <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -241,7 +75,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <h3>Skills</h3>
           <div class="inner">
             <div class="pill">Web Tracking Implementation Specialist (GTM, GA4, GAds, Meta CAPi, etc.,)</div>
-            <div class="pill">Communication & Interpersonal Skills</div>
+            <div class="pill">Communication & Interpersonal</div>
             <div class="pill">Technical Support Specialist</div>
             <div class="pill">Shopify & Wordpress Management</div>
             <div class="pill">Research</div>
@@ -256,7 +90,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <section class="card">
           <h3>Language</h3>
           <div class="inner">
-            <div class="pill">English, Filipino (Tagalog)</div>
+            <div class="pill">English, Tagalog</div>
           </div>
         </section>
       </aside>
